@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Luciano M. Fernandes - Ecossistema de Atendimento & SEO</title>
+    <style>
+        :root {
+            --primary: #0077b6;
+            --primary-dark: #023e8a;
+            --secondary: #00b4d8;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #2a9d8f;
+            --warning: #e76f51;
+            --gray: #e9ecef;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f9;
+            color: var(--dark);
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: white;
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .header-title h1 {
+            font-size: 1.6rem;
+            margin-bottom: 4px;
+        }
+
+        .header-title p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .badge-status {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(5px);
+        }
+
+        .pulse {
+            width: 10px;
+            height: 10px;
+            background-color: #2ec4b6;
+            border-radius: 50%;
+            box-shadow: 0 0 0 rgba(46, 196, 182, 0.4);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(46, 196, 182, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(46, 196, 182, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(46, 196, 182, 0); }
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .card h2 {
+            font-size: 1.1rem;
+            color: var(--primary-dark);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 2px solid var(--gray);
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 14px;
+        }
+
+        label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #495057;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--primary);
+        }
+
+        button {
+            width: 100%;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .result-box {
+            background: #f8f9fa;
+            border-left: 4px solid var(--primary);
+            padding: 14px;
+            border-radius: 4px;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .metric-item {
+            background: white;
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #e9ecef;
+        }
+
+        .metric-value {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--primary-dark);
+        }
+
+        .metric-label {
+            font-size: 0.75rem;
+            color: #6c757d;
+        }
+
+        .agenda-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        .agenda-table th, .agenda-table td {
+            padding: 10px 8px;
+            text-align: left;
+            border-bottom: 1px solid var(--gray);
+        }
+
+        .agenda-table th {
+            background-color: #f8f9fa;
+            color: #495057;
+        }
+
+        .tag-polo {
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .polo-palhoca { background-color: #e0f2fe; color: #0369a1; }
+        .polo-saojose { background-color: #fef3c7; color: #b45309; }
+        .polo-floripa { background-color: #dcfce7; color: #15803d; }
+
+        .post-card {
+            background: #f8f9fa;
+            border: 1px dashed #ced4da;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .post-card-header {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .status-bar-container {
+            margin-top: 10px;
+        }
+
+        .status-bar-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            margin-bottom: 4px;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background-color: var(--gray);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: var(--success);
+            width: 75%;
+            transition: width 0.3s;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-title">
+            <h1>Dr. Luciano M. Fernandes</h1>
+            <p>Fisioterapeuta (CREFITO 127096-F) | Central de Automação & SEO Local</p>
+        </div>
+        <div class="badge-status">
+            <div class="pulse"></div>
+            <span>Ecossistema 24/7 Ativo</span>
+        </div>
+    </header>
+
+    <div class="grid-container">
+
+        <!-- CARD 1: SIMULADOR DE DESLOCAMENTO E ORÇAMENTO -->
+        <div class="card">
+            <h2>💰 Orçamento & Deslocamento</h2>
+            <div class="form-group">
+                <label>Nome do Paciente</label>
+                <input type="text" id="nomePaciente" placeholder="Ex: Dona Francisca">
+            </div>
+            <div class="form-group">
+                <label>Especialidade</label>
+                <select id="especialidade">
+                    <option value="Fisioterapia Geriátrica">Fisioterapia Geriátrica</option>
+                    <option value="Fisioterapia Ortopédica">Fisioterapia Ortopédica</option>
+                    <option value="Recovery Esportivo">Recovery Esportivo</option>
+                    <option value="Fisioterapia Domiciliar">Fisioterapia Domiciliar</option>
+                    <option value="Treinamento Funcional">Treinamento Funcional</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Região do Atendimento</label>
+                <select id="regiao">
+                    <option value="palhoca">Palhoça</option>
+                    <option value="saojose">São José</option>
+                    <option value="floripa_centro">Florianópolis (Centro/Sul)</option>
+                    <option value="floripa_norte">Florianópolis (Norte)</option>
+                </select>
+            </div>
+            <button onclick="calcularOrcamento()">Calcular e Gerar Resposta</button>
+
+            <div id="resultadoOrcamento" class="result-box">
+                <div class="metrics-grid">
+                    <div class="metric-item">
+                        <div class="metric-value">R$ 70,00</div>
+                        <div class="metric-label">Base</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-value" id="valDeslocamento">R$ 15,00</div>
+                        <div class="metric-label">Taxa Transp.</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-value" id="valTotal">R$ 85,00</div>
+                        <div class="metric-label">Total</div>
+                    </div>
+                </div>
+                <div style="margin-top: 12px;">
+                    <label>Mensagem pronta para WhatsApp:</label>
+                    <textarea id="msgWhatsapp" rows="4" readonly></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- CARD 2: POSTAGENS DIÁRIAS SEO (GOOGLE MEU NEGÓCIO) -->
+        <div class="card">
+            <h2>📢 Gerador de Posts Diários (SEO Local)</h2>
+            <p style="font-size: 0.8rem; color: #6c757d; margin-bottom: 12px;">Postagens automáticas programadas para impulsionar o perfil no Google.</p>
+            
+            <div class="post-card">
+                <div class="post-card-header">
+                    <span>📌 Hoje (Palhoça)</span>
+                    <span style="color: var(--success); font-size: 0.75rem;">Publicado ✅</span>
+                </div>
+                <p><strong>Fisioterapia Geriátrica Domiciliar em Palhoça:</strong> Reabilitação com foco na mobilidade e prevenção de quedas no conforto de casa. Agende sua avaliação! 📞 (48) 98453-3554</p>
+            </div>
+
+            <div class="post-card">
+                <div class="post-card-header">
+                    <span>📌 Amanhã (São José)</span>
+                    <span style="color: var(--warning); font-size: 0.75rem;">Agendado ⏳</span>
+                </div>
+                <p><strong>Recovery Esportivo em São José:</strong> Alívio de dores musculares, aceleramento da recuperação pós-treino e prevenção de lesões. Atendimento domiciliar rápido!</p>
+            </div>
+
+            <button style="background-color: var(--secondary); margin-top: 5px;" onclick="gerarNovoPost()">Gerar Novo Post para o Google</button>
+        </div>
+
+        <!-- CARD 3: ROTEIRO DIÁRIO E CENTRAL MULTI-IA -->
+        <div class="card">
+            <h2>📅 Roteiro & Status Multi-IA</h2>
+            
+            <label style="margin-top: 4px;">Roteiro Otimizado de Hoje:</label>
+            <table class="agenda-table">
+                <thead>
+                    <tr>
+                        <th>Hora</th>
+                        <th>Paciente</th>
+                        <th>Polo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>08:30</td>
+                        <td>Sr. Carlos</td>
+                        <td><span class="tag-polo polo-palhoca">Palhoça</span></td>
+                    </tr>
+                    <tr>
+                        <td>10:30</td>
+                        <td>Dona Maria</td>
+                        <td><span class="tag-polo polo-palhoca">Palhoça</span></td>
+                    </tr>
+                    <tr>
+                        <td>14:00</td>
+                        <td>Atleta João</td>
+                        <td><span class="tag-polo polo-saojose">São José</span></td>
+                    </tr>
+                    <tr>
+                        <td>16:30</td>
+                        <td>Ana Paula</td>
+                        <td><span class="tag-polo polo-floripa">Florianópolis</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div style="margin-top: 18px;">
+                <label>Status dos Provedores de IA:</label>
+                <div class="status-bar-container">
+                    <div class="status-bar-header">
+                        <span>Google Gemini API (Principal)</span>
+                        <span>75% (750/1000)</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 75%;"></div>
+                    </div>
+                </div>
+
+                <div class="status-bar-container">
+                    <div class="status-bar-header">
+                        <span>Groq API Llama 3 (Fallback)</span>
+                        <span>0% (Pronto)</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%; background-color: var(--warning);"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function calcularOrcamento() {
+            const nome = document.getElementById('nomePaciente').value || 'Paciente';
+            const esp = document.getElementById('especialidade').value;
+            const regiao = document.getElementById('regiao').value;
+
+            const base = 70.00;
+            const combustivel = 7.00;
+            const kmPorLitro = 14.0;
+
+            const distancias = {
+                'palhoca': 8.0,
+                'saojose': 15.0,
+                'floripa_centro': 25.0,
+                'floripa_norte': 38.0
+            };
+
+            const distIda = distancias[regiao];
+            const distTotal = distIda * 2;
+            const taxa = (distTotal / kmPorLitro) * combustivel;
+            const total = base + taxa;
+
+            document.getElementById('valDeslocamento').innerText = 'R$ ' + taxa.toFixed(2).replace('.', ',');
+            document.getElementById('valTotal').innerText = 'R$ ' + total.toFixed(2).replace('.', ',');
+
+            const regiaoTexto = document.getElementById('regiao').options[document.getElementById('regiao').selectedIndex].text;
+
+            const msg = `🤖 *ATENDIMENTO AUTOMATIZADO - DR. LUCIANO M. FERNANDES*\n(CREFITO: 127096-F)\n\nOlá, *${nome}*!\nRecebi seu interesse em *${esp}* com atendimento domiciliar em *${regiaoTexto}*.\n\n📊 *Orçamento Estimado:*\n• Sessão Base: R$ 70,00\n• Taxa Deslocamento (${distTotal} km): R$ ${taxa.toFixed(2).replace('.', ',')}\n• *Valor Total: R$ ${total.toFixed(2).replace('.', ',')}*\n\nDeseja confirmar o agendamento da avaliação domiciliar? Posso verificar os horários em nossa agenda otimizada!`;
+
+            document.getElementById('msgWhatsapp').value = msg;
+            document.getElementById('resultadoOrcamento').style.display = 'block';
+        }
+
+        function gerarNovoPost() {
+            alert('🤖 Novo post de SEO Local para Florianópolis gerado pela IA e salvo na fila de publicação!');
+        }
+    </script>
+</body>
+</html>
